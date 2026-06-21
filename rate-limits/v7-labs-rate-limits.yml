@@ -1,0 +1,65 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: V7
+providerId: v7-labs
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Training Data
+- Data Labeling
+- Annotation
+- Document AI
+- Computer Vision
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The V7 Darwin REST API at https://darwin.v7labs.com/api enforces per-team
+  rate limits keyed to the API key making the request, plus pagination caps on
+  list endpoints (items are paginated via page[size]/page[offset]). V7 does not
+  publish specific numeric RPM/TPM thresholds; bulk operations (register/upload,
+  exports) are processed asynchronously to smooth load. Specific per-endpoint
+  limits are not reconciled in this artifact.
+notes: >-
+  Numeric limits are not publicly documented; confirm per-team and per-endpoint
+  limits with V7 support during reconciliation. Use pagination and async
+  exports rather than tight polling.
+sources:
+- https://docs.v7labs.com/reference/introduction
+- https://docs.v7labs.com/reference/pagination
+responseCodes:
+  throttled: 429
+limits:
+- name: Requests Per Minute (per API key)
+  scope: api_key
+  metric: requests
+  limit: see provider documentation
+  notes: Per-team/per-key request throttling; specific value not published.
+- name: List Pagination Size
+  scope: endpoint
+  metric: items
+  limit: page[size] capped per request
+  notes: Item and ID list endpoints are paginated via page[size] and page[offset].
+- name: Bulk Upload / Registration
+  scope: team
+  metric: jobs
+  limit: processed asynchronously
+  notes: register_upload, sign, and confirm flows handle large batches without blocking sync limits.
+- name: Exports
+  scope: dataset
+  metric: jobs
+  limit: processed asynchronously
+  notes: Export (release) generation runs as a background job per dataset.
+policies:
+- name: Per-Key Scoping
+  description: API keys are scoped to a team and their permissions; limits and access are evaluated per key.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter on 429 responses and honor Retry-After when present.
+- name: Pagination
+  description: Use page[offset]/page[size] cursors on list endpoints rather than requesting all items at once.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

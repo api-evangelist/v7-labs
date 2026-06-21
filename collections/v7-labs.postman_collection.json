@@ -1,0 +1,554 @@
+{
+  "item": [
+    {
+      "name": "Datasets",
+      "description": {
+        "content": "Create and manage Darwin datasets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "List datasets",
+          "request": {
+            "name": "List datasets",
+            "url": {
+              "path": ["datasets"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Create a dataset",
+          "request": {
+            "name": "Create a dataset",
+            "url": {
+              "path": ["datasets"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": []
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get a dataset",
+          "request": {
+            "name": "Get a dataset",
+            "url": {
+              "path": ["datasets", ":id"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "id", "value": "<integer>" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Items & Upload",
+      "description": {
+        "content": "Register, upload, list, and manage dataset items.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "List items",
+          "request": {
+            "name": "List items",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items"],
+              "host": ["{{baseUrl}}"],
+              "query": [
+                { "key": "dataset_ids[]", "value": "<integer>" },
+                { "key": "page[size]", "value": "50" },
+                { "key": "page[offset]", "value": "0" }
+              ],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Get an item",
+          "request": {
+            "name": "Get an item",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", ":item_id"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "item_id", "value": "<uuid>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Register locally stored data",
+          "request": {
+            "name": "Register locally stored data",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", "register_upload"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataset_slug\": \"<string>\",\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"path\": \"/\",\n      \"slots\": [\n        { \"slot_name\": \"0\", \"file_name\": \"<string>\" }\n      ]\n    }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Sign upload of locally stored files",
+          "request": {
+            "name": "Sign upload of locally stored files",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", "uploads", ":upload_id", "sign"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "upload_id", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Confirm locally registered files",
+          "request": {
+            "name": "Confirm locally registered files",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", "uploads", ":upload_id", "confirm"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "upload_id", "value": "<string>" }
+              ]
+            },
+            "header": [],
+            "method": "POST"
+          },
+          "response": []
+        },
+        {
+          "name": "Register externally stored data (read-write)",
+          "request": {
+            "name": "Register externally stored data (read-write)",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", "register_existing"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataset_slug\": \"<string>\",\n  \"storage_name\": \"<string>\",\n  \"items\": [\n    { \"name\": \"<string>\", \"path\": \"/\", \"storage_key\": \"<string>\" }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register externally stored data (read-only)",
+          "request": {
+            "name": "Register externally stored data (read-only)",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", "register_existing_readonly"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataset_slug\": \"<string>\",\n  \"storage_name\": \"<string>\",\n  \"items\": [\n    { \"name\": \"<string>\", \"path\": \"/\", \"storage_key\": \"<string>\" }\n  ]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Archive items",
+          "request": {
+            "name": "Archive items",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", "archive"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": { \"dataset_ids\": [0] }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Restore items",
+          "request": {
+            "name": "Restore items",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", "restore"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": { \"dataset_ids\": [0] }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete items",
+          "request": {
+            "name": "Delete items",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "DELETE",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": { \"dataset_ids\": [0] }\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Annotations",
+      "description": {
+        "content": "Read and import item annotations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "List item annotations",
+          "request": {
+            "name": "List item annotations",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", ":item_id", "annotations"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "item_id", "value": "<uuid>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Import annotations",
+          "request": {
+            "name": "Import annotations",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", ":item_id", "import"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "item_id", "value": "<uuid>" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"annotations\": [],\n  \"overwrite\": false\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Workflows & Stages",
+      "description": {
+        "content": "Manage annotation workflows and item stages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "List workflows",
+          "request": {
+            "name": "List workflows",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "workflows"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Create workflow",
+          "request": {
+            "name": "Create workflow",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "workflows"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"stages\": []\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get workflow",
+          "request": {
+            "name": "Get workflow",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "workflows", ":id"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "id", "value": "<uuid>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Set stage",
+          "request": {
+            "name": "Set stage",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "items", "stage"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": { \"dataset_ids\": [0] },\n  \"stage_id\": \"<uuid>\",\n  \"workflow_id\": \"<uuid>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Classes",
+      "description": {
+        "content": "Manage annotation classes (labeling taxonomy).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "List annotation classes",
+          "request": {
+            "name": "List annotation classes",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "annotation_classes"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [{ "key": "team_slug", "value": "{{teamSlug}}" }]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Update annotation class",
+          "request": {
+            "name": "Update annotation class",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "annotation_classes", ":class_id"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "class_id", "value": "<integer>" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"annotation_types\": [\"bounding_box\"]\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Exports",
+      "description": {
+        "content": "Request and manage dataset exports (releases).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "name": "List exports",
+          "request": {
+            "name": "List exports",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "datasets", ":dataset_slug", "exports"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "dataset_slug", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Create an export",
+          "request": {
+            "name": "Create an export",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "datasets", ":dataset_slug", "exports"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "dataset_slug", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"format\": \"darwin_json_2\",\n  \"include_authorship\": false\n}",
+              "options": { "raw": { "language": "json" } }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show export",
+          "request": {
+            "name": "Show export",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "datasets", ":dataset_slug", "exports", ":name"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "dataset_slug", "value": "<string>" },
+                { "key": "name", "value": "<string>" }
+              ]
+            },
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "method": "GET"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete export",
+          "request": {
+            "name": "Delete export",
+            "url": {
+              "path": ["v2", "teams", ":team_slug", "datasets", ":dataset_slug", "exports", ":name"],
+              "host": ["{{baseUrl}}"],
+              "query": [],
+              "variable": [
+                { "key": "team_slug", "value": "{{teamSlug}}" },
+                { "key": "dataset_slug", "value": "<string>" },
+                { "key": "name", "value": "<string>" }
+              ]
+            },
+            "header": [],
+            "method": "DELETE"
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [],
+  "variable": [
+    { "type": "string", "value": "https://darwin.v7labs.com/api", "key": "baseUrl" },
+    { "type": "string", "value": "my-team", "key": "teamSlug" }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "Authorization" },
+      { "key": "value", "value": "ApiKey {{apiKey}}" },
+      { "key": "in", "value": "header" }
+    ]
+  },
+  "info": {
+    "_postman_id": "b7f3a1c2-9d44-4e7a-8f21-1c0a5e6d2f90",
+    "name": "V7 Darwin API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the V7 Darwin training-data platform. Manage datasets, items, annotations, workflows/stages, classes, and exports. Authenticate with an Authorization: ApiKey {key} header.\n\nContact Support:\n URL: https://docs.v7labs.com",
+      "type": "text/plain"
+    }
+  }
+}

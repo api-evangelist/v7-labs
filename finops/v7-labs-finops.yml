@@ -1,0 +1,112 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: V7
+providerId: v7-labs
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Training Data
+- Data Labeling
+- Annotation
+- Document AI
+- Computer Vision
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of V7 spend. V7 bills its Darwin training-data platform and V7 Go
+  document-automation platform through sales-led annual contracts combining
+  per-seat subscription, annotation/automation usage, automated model and agent
+  runs, and AI token consumption. Public per-unit rates are not published, so
+  the meters below describe cost dimensions rather than reconciled prices.
+notes: >-
+  V7 does not publish a transparent public price list for the API; per-unit
+  rates and invoice structure must be confirmed with V7 sales/finance during
+  reconciliation.
+sources:
+- https://www.v7labs.com/pricing
+- https://docs.v7labs.com
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: V7
+serviceCategory: AI and Machine Learning
+billingModel:
+  pricingCategory: Subscription + Usage-Based
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: V7 Darwin
+  ServiceCategory: AI and Machine Learning
+  ProviderName: V7
+  PublisherName: V7
+  InvoiceIssuerName: V7
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription + Usage-Based
+meters:
+- name: seats
+  description: Active user seats on Darwin / V7 Go, billed per seat under the subscription.
+  unit: seats
+  aggregation: max
+  dimensions:
+  - team
+  - workspace
+- name: items_annotated
+  description: Dataset items registered and annotated, a key volume driver for annotation contracts.
+  unit: items
+  aggregation: sum
+  dimensions:
+  - team
+  - dataset
+- name: automated_model_runs
+  description: Automated model / AI annotation runs executed against items.
+  unit: runs
+  aggregation: sum
+  dimensions:
+  - team
+  - workflow
+- name: agent_runs
+  description: V7 Go agent/entity processing runs over documents.
+  unit: runs
+  aggregation: sum
+  dimensions:
+  - workspace
+  - project
+- name: ai_tokens
+  description: AI/LLM token consumption for model-backed extraction and automation.
+  unit: tokens
+  aggregation: sum
+  dimensions:
+  - workspace
+  - project
+- name: exports
+  description: Dataset export (release) generation jobs producing downloadable training data.
+  unit: jobs
+  aggregation: sum
+  dimensions:
+  - team
+  - dataset
+principles:
+- name: Visibility
+  description: Track seats, annotated item volume, automated/agent runs, and token usage per team and project against the contract.
+- name: Allocation
+  description: Scope API keys per workload/team and tag datasets, workflows, and projects to internal cost centers.
+- name: Optimization
+  description: Use automated model runs and exports judiciously, batch registrations, and reserve human review for items that need it.
+- name: Accountability
+  description: Assign owners per dataset/workspace and review annotation and automation spend against the annual commitment.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

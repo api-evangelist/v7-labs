@@ -1,0 +1,113 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: V7
+providerId: v7-labs
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- AI
+- Training Data
+- Data Labeling
+- Annotation
+- Document AI
+- Computer Vision
+- Plans
+description: >-
+  V7 sells its Darwin training-data platform and V7 Go document-automation
+  platform through a sales-led model. Public pricing tiers are not published as
+  transparent per-call rates; plans are quoted per seat, per workspace, and by
+  usage (annotation volume, automated model/agent runs, and AI token
+  consumption) under annual contracts. Trials and demos are available by
+  request. Exact figures are not reconciled because V7 does not publish a
+  public price list for the API.
+notes: >-
+  Pricing is sales-led and not publicly listed; the tiers below are
+  representative of V7's published packaging language and must be confirmed
+  with V7 sales during reconciliation.
+sources:
+- https://www.v7labs.com/pricing
+- https://docs.v7labs.com
+plans:
+- id: v7-labs-trial
+  name: Trial / Free
+  type: trial
+  description: >-
+    Time-limited trial access to V7 Darwin or V7 Go for evaluation, including
+    API access scoped by API-key permissions. Granted on request.
+  entries:
+  - label: Evaluation Access
+    name: trial
+    type: trial
+    metric: days
+    limit: -1
+    timeFrame: day
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Darwin Annotation
+  - name: Workflows
+  - name: API Access
+- id: v7-labs-pro
+  name: Pro / Team
+  type: subscription
+  description: >-
+    Per-seat subscription for teams running annotation workflows on Darwin or
+    document-automation agents on V7 Go, with usage-metered automated model
+    and AI runs. Quoted per workspace.
+  entries:
+  - label: Per-seat Subscription
+    name: per_seat
+    type: recurring
+    metric: seats
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: true
+  - label: Automated Runs / AI Tokens
+    name: usage
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: usage-based, contact sales
+    userMultiplied: false
+  elements:
+  - name: Datasets
+  - name: Items & Upload
+  - name: Annotations
+  - name: Workflows & Stages
+  - name: Exports
+- id: v7-labs-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Annual enterprise agreements with volume annotation/automation commitments,
+    SSO/SAML, private and on-prem deployment options, security review, dedicated
+    support, and negotiated terms. Contact V7 sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: SSO / SAML
+  - name: Private / On-Prem Deployment
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "V7 Darwin API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "ApiKey {{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Datasets", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List datasets", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/datasets" },
+          "docs": "Returns the datasets accessible to the authenticated team."
+        },
+        {
+          "info": { "name": "Create a dataset", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/datasets",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Creates a new dataset."
+        },
+        {
+          "info": { "name": "Get a dataset", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/datasets/:id" },
+          "docs": "Returns the dataset with the provided numeric ID."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Items & Upload", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List items", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items?dataset_ids[]=&page[size]=50&page[offset]=0" },
+          "docs": "Returns a paginated list of items for the given filters."
+        },
+        {
+          "info": { "name": "Get an item", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/:item_id" },
+          "docs": "Returns the item with the provided ID."
+        },
+        {
+          "info": { "name": "Register locally stored data", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/register_upload",
+            "body": { "type": "json", "data": "{\n  \"dataset_slug\": \"<string>\",\n  \"items\": []\n}" }
+          },
+          "docs": "Registers locally stored files for upload to a dataset."
+        },
+        {
+          "info": { "name": "Sign upload of locally stored files", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/uploads/:upload_id/sign" },
+          "docs": "Returns a pre-signed URL for uploading the registered file."
+        },
+        {
+          "info": { "name": "Confirm locally registered files", "type": "http" },
+          "http": { "method": "POST", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/uploads/:upload_id/confirm" },
+          "docs": "Confirms that the upload has completed to finalize registration."
+        },
+        {
+          "info": { "name": "Register externally stored data (read-write)", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/register_existing",
+            "body": { "type": "json", "data": "{\n  \"dataset_slug\": \"<string>\",\n  \"storage_name\": \"<string>\",\n  \"items\": []\n}" }
+          },
+          "docs": "Registers files in external storage with read-write access."
+        },
+        {
+          "info": { "name": "Register externally stored data (read-only)", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/register_existing_readonly",
+            "body": { "type": "json", "data": "{\n  \"dataset_slug\": \"<string>\",\n  \"storage_name\": \"<string>\",\n  \"items\": []\n}" }
+          },
+          "docs": "Registers files in external storage with read-only access."
+        },
+        {
+          "info": { "name": "Archive items", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/archive",
+            "body": { "type": "json", "data": "{\n  \"filters\": { \"dataset_ids\": [0] }\n}" }
+          },
+          "docs": "Archives all items selected by the provided filters."
+        },
+        {
+          "info": { "name": "Restore items", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/restore",
+            "body": { "type": "json", "data": "{\n  \"filters\": { \"dataset_ids\": [0] }\n}" }
+          },
+          "docs": "Restores archived items selected by the provided filters."
+        },
+        {
+          "info": { "name": "Delete items", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items",
+            "body": { "type": "json", "data": "{\n  \"filters\": { \"dataset_ids\": [0] }\n}" }
+          },
+          "docs": "Deletes items selected by the provided filters."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Annotations", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List item annotations", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/:item_id/annotations" },
+          "docs": "Returns the annotations attached to the given item."
+        },
+        {
+          "info": { "name": "Import annotations", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/:item_id/import",
+            "body": { "type": "json", "data": "{\n  \"annotations\": [],\n  \"overwrite\": false\n}" }
+          },
+          "docs": "Imports annotations (Darwin JSON v2.0) created outside of V7 onto the item."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Workflows & Stages", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List workflows", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/workflows" },
+          "docs": "Returns the list of workflows."
+        },
+        {
+          "info": { "name": "Create workflow", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/workflows",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\",\n  \"stages\": []\n}" }
+          },
+          "docs": "Creates a workflow by specified parameters."
+        },
+        {
+          "info": { "name": "Get workflow", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/workflows/:id" },
+          "docs": "Returns the workflow with the specified ID."
+        },
+        {
+          "info": { "name": "Set stage", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/stage",
+            "body": { "type": "json", "data": "{\n  \"filters\": { \"dataset_ids\": [0] },\n  \"stage_id\": \"<uuid>\",\n  \"workflow_id\": \"<uuid>\"\n}" }
+          },
+          "docs": "Sets the workflow stage of the items matched by the filters."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Classes", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List annotation classes", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/annotation_classes" },
+          "docs": "Lists the annotation classes for the team."
+        },
+        {
+          "info": { "name": "Update annotation class", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/annotation_classes/:class_id",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\",\n  \"annotation_types\": [\"bounding_box\"]\n}" }
+          },
+          "docs": "Updates an existing annotation class."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Exports", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List exports", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/datasets/:dataset_slug/exports" },
+          "docs": "Lists all available exports (releases) for a dataset."
+        },
+        {
+          "info": { "name": "Create an export", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/datasets/:dataset_slug/exports",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\",\n  \"format\": \"darwin_json_2\"\n}" }
+          },
+          "docs": "Requests a new export, processed asynchronously."
+        },
+        {
+          "info": { "name": "Show export", "type": "http" },
+          "http": { "method": "GET", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/datasets/:dataset_slug/exports/:name" },
+          "docs": "Gets an export for a dataset by name."
+        },
+        {
+          "info": { "name": "Delete export", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/datasets/:dataset_slug/exports/:name" },
+          "docs": "Removes an export from a dataset."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+aid: v7-labs
+name: V7
+review:
+  question: Does V7 expose a documented public WebSocket or streaming (AsyncAPI) API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. V7 Darwin's public REST API at
+    https://darwin.v7labs.com/api exposes only request/response HTTPS
+    endpoints. Asynchronous work (uploads, exports/releases, report jobs)
+    is handled via background jobs polled over REST, not via a streaming
+    transport. Event delivery to external systems is done through outbound
+    webhooks, which are not modeled as an AsyncAPI streaming surface here.
+    No WebSocket or Server-Sent Events surface is documented.
+findings:
+  summary: |
+    V7 does not publish a documented public WebSocket or SSE streaming API.
+    The V7 Darwin platform exposes a REST (HTTPS) API under
+    https://darwin.v7labs.com/api authenticated with an
+    `Authorization: ApiKey {key}` header, with team-scoped paths under
+    /v2/teams/{team_slug}/. Long-running operations such as item
+    registration/upload and dataset exports are asynchronous background
+    jobs that clients poll over REST. V7 supports outbound webhooks for
+    event notifications, but no realtime bidirectional WebSocket
+    (ws:// or wss://) endpoint is documented. V7 Go exposes a separate
+    REST API surface (projects, entities, cases, exports) under its own
+    docs at docs.go.v7labs.com.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://darwin.v7labs.com/api
+      documented: true
+    - protocol: Webhooks
+      scheme: https
+      note: Outbound HTTP webhooks deliver event notifications; inbound REST only, not a streaming/WebSocket surface.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in V7 Darwin or V7 Go references as of the review date.
+    - protocol: SSE
+      scheme: https
+      documented: false
+      note: No Server-Sent Events streaming transport is documented; async jobs are polled over REST.
+  endpointsConfirmedRest:
+    - GET    https://darwin.v7labs.com/api/datasets/{id}
+    - GET    https://darwin.v7labs.com/api/v2/teams/{team_slug}/items
+    - GET    https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/{item_id}
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/register_upload
+    - GET    https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/uploads/{upload_id}/sign
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/uploads/{upload_id}/confirm
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/register_existing
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/register_existing_readonly
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/archive
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/restore
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/stage
+    - DELETE https://darwin.v7labs.com/api/v2/teams/{team_slug}/items
+    - GET    https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/{item_id}/annotations
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/items/{item_id}/import
+    - GET    https://darwin.v7labs.com/api/v2/teams/{team_slug}/annotation_classes
+    - GET    https://darwin.v7labs.com/api/v2/teams/{team_slug}/workflows
+    - GET    https://darwin.v7labs.com/api/v2/teams/{team_slug}/workflows/{id}
+    - POST   https://darwin.v7labs.com/api/v2/teams/{team_slug}/datasets/{dataset_slug}/exports
+    - GET    https://darwin.v7labs.com/api/v2/teams/{team_slug}/datasets/{dataset_slug}/exports
+sources:
+  - url: https://docs.v7labs.com/reference/introduction
+    type: APIReference
+    note: Introduction to the V7 Darwin REST API; all documented endpoints are HTTPS REST with ApiKey auth.
+  - url: https://docs.v7labs.com/docs/getting-started-1
+    type: Documentation
+    note: CLI/SDK getting started; API keys generated at darwin.v7labs.com/?settings=api-keys, no WebSocket mentioned.
+  - url: https://github.com/v7labs/darwin-py
+    type: SourceCode
+    note: Official darwin-py SDK; backend client confirms /api/v2/teams/{team_slug}/... REST paths for items, uploads, exports, workflows.
+  - url: https://docs.go.v7labs.com
+    type: Documentation
+    note: V7 Go REST API reference (projects, entities, cases, exports); REST only, no streaming surface.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or SSE protocol surface exists for V7. Event delivery is via
+    outbound webhooks and async jobs polled over REST, so no AsyncAPI document
+    was authored. The apis.yml catalogs the documented REST surface across the
+    Datasets, Items/Upload, Annotations, Workflows/Stages, Classes, and Exports
+    sub-APIs.

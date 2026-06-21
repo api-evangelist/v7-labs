@@ -1,0 +1,169 @@
+aid: v7-labs
+url: https://raw.githubusercontent.com/api-evangelist/v7-labs/refs/heads/main/apis.yml
+name: V7
+kind: company
+description: V7 is an AI training-data and document-automation company. V7 Darwin is
+  a training-data platform for labeling images, video, and documents and orchestrating
+  human-in-the-loop annotation workflows; V7 Go automates document-intensive knowledge
+  work with agentic AI. The Darwin REST API at https://darwin.v7labs.com/api manages
+  datasets, items, annotations, classes, workflow stages, and exports using ApiKey
+  authentication.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- AI
+- Training Data
+- Data Labeling
+- Annotation
+- Document AI
+- Computer Vision
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: v7-labs:datasets
+  name: V7 Darwin Datasets API
+  tags:
+  - Datasets
+  - Training Data
+  - Computer Vision
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.v7labs.com/reference/introduction
+  baseURL: https://darwin.v7labs.com/api
+  properties:
+  - url: https://docs.v7labs.com/docs/getting-started-1
+    type: Documentation
+  - url: https://docs.v7labs.com/reference/introduction
+    type: APIReference
+  - url: openapi/v7-labs-openapi.yml
+    type: OpenAPI
+  - url: collections/v7-labs.postman_collection.json
+    type: PostmanCollection
+  - url: collections/v7-labs.opencollection.json
+    type: OpenCollection
+  description: Create and manage Darwin datasets that hold the images, video, and documents
+    being annotated, including external-storage configuration and dataset releases.
+- aid: v7-labs:items-upload
+  name: V7 Darwin Items & Upload API
+  tags:
+  - Items
+  - Upload
+  - Registration
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.v7labs.com/reference/introduction
+  baseURL: https://darwin.v7labs.com/api
+  properties:
+  - url: https://docs.v7labs.com/docs/getting-started-1
+    type: Documentation
+  - url: https://docs.v7labs.com/reference/introduction
+    type: APIReference
+  - url: openapi/v7-labs-openapi.yml
+    type: OpenAPI
+  - url: collections/v7-labs.postman_collection.json
+    type: PostmanCollection
+  - url: collections/v7-labs.opencollection.json
+    type: OpenCollection
+  description: Register, sign, and confirm uploads of locally or externally stored
+    files as dataset items, list and filter items, and archive, restore, move, or
+    delete them across datasets.
+- aid: v7-labs:annotations
+  name: V7 Darwin Annotations API
+  tags:
+  - Annotations
+  - Labels
+  - Import
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.v7labs.com/reference/introduction
+  baseURL: https://darwin.v7labs.com/api
+  properties:
+  - url: https://docs.v7labs.com/docs/import-annotations-made-outside-of-v7
+    type: Documentation
+  - url: https://docs.v7labs.com/reference/introduction
+    type: APIReference
+  - url: openapi/v7-labs-openapi.yml
+    type: OpenAPI
+  - url: collections/v7-labs.postman_collection.json
+    type: PostmanCollection
+  - url: collections/v7-labs.opencollection.json
+    type: OpenCollection
+  description: Read the annotations attached to an item and import annotations created
+    outside of V7 in the Darwin JSON v2.0 format.
+- aid: v7-labs:workflows-stages
+  name: V7 Darwin Workflows & Stages API
+  tags:
+  - Workflows
+  - Stages
+  - Human in the Loop
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.v7labs.com/reference/introduction
+  baseURL: https://darwin.v7labs.com/api
+  properties:
+  - url: https://docs.v7labs.com/reference/introduction
+    type: APIReference
+  - url: openapi/v7-labs-openapi.yml
+    type: OpenAPI
+  - url: collections/v7-labs.postman_collection.json
+    type: PostmanCollection
+  - url: collections/v7-labs.opencollection.json
+    type: OpenCollection
+  description: Create, list, and manage multi-stage annotation workflows, link datasets,
+    set the workflow stage of items, and assign items to annotators for human-in-the-loop
+    review.
+- aid: v7-labs:classes
+  name: V7 Darwin Annotation Classes API
+  tags:
+  - Classes
+  - Taxonomy
+  - Labels
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.v7labs.com/reference/introduction
+  baseURL: https://darwin.v7labs.com/api
+  properties:
+  - url: https://docs.v7labs.com/reference/introduction
+    type: APIReference
+  - url: openapi/v7-labs-openapi.yml
+    type: OpenAPI
+  - url: collections/v7-labs.postman_collection.json
+    type: PostmanCollection
+  - url: collections/v7-labs.opencollection.json
+    type: OpenCollection
+  description: List and update the team's annotation classes (bounding box, polygon,
+    keypoint, tag, and other label types) that define the labeling taxonomy used across
+    datasets.
+- aid: v7-labs:exports
+  name: V7 Darwin Exports API
+  tags:
+  - Exports
+  - Releases
+  - Datasets
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.v7labs.com/reference/introduction
+  baseURL: https://darwin.v7labs.com/api
+  properties:
+  - url: https://docs.v7labs.com/reference/introduction
+    type: APIReference
+  - url: openapi/v7-labs-openapi.yml
+    type: OpenAPI
+  - url: collections/v7-labs.postman_collection.json
+    type: PostmanCollection
+  - url: collections/v7-labs.opencollection.json
+    type: OpenCollection
+  description: Request, list, show, and delete dataset exports (releases) that package
+    the labeled annotations asynchronously for download as training data.
+common:
+- type: GitHubOrganization
+  url: https://github.com/v7labs
+- type: LinkedIn
+  url: https://www.linkedin.com/company/v7labs
+- type: Website
+  url: https://www.v7labs.com
+- type: Documentation
+  url: https://docs.v7labs.com
+- type: Plans
+  url: plans/v7-labs-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/v7-labs-rate-limits.yml
+- type: FinOps
+  url: finops/v7-labs-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
