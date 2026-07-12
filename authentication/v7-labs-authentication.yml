@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/v7-labs-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: 'Team-scoped API key sent as `Authorization: ApiKey {key}`. Generate keys at
+    https://darwin.v7labs.com/?settings=api-keys. Key permissions determine which operations
+    are allowed.'
+  sources:
+  - openapi/v7-labs-openapi.yml

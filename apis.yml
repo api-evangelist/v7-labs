@@ -150,6 +150,14 @@ apis:
   description: Request, list, show, and delete dataset exports (releases) that package
     the labeled annotations asynchronously for download as training data.
 common:
+- type: TrustCenter
+  url: security/v7-labs-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/v7-labs-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/v7-labs-domain-security.yml
+- type: Authentication
+  url: authentication/v7-labs-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/v7labs
 - type: LinkedIn
@@ -164,6 +172,8 @@ common:
   url: rate-limits/v7-labs-rate-limits.yml
 - type: FinOps
   url: finops/v7-labs-finops.yml
+- type: Blog
+  url: https://www.v7labs.com/blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
