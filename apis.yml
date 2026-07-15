@@ -150,6 +150,8 @@ apis:
   description: Request, list, show, and delete dataset exports (releases) that package
     the labeled annotations asynchronously for download as training data.
 common:
+- type: AgenticAccess
+  url: agentic-access/v7-labs-agentic-access.yml
 - type: TrustCenter
   url: security/v7-labs-trust-center.yml
 - type: VulnerabilityDisclosure
