@@ -1,0 +1,422 @@
+openapi: 3.0.1
+info:
+  title: V7 Darwin Annotations Items API
+  description: 'REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.'
+  termsOfService: https://www.v7labs.com/terms
+  contact:
+    name: V7 Support
+    url: https://docs.v7labs.com
+  version: '2.0'
+servers:
+- url: https://darwin.v7labs.com/api
+  description: V7 Darwin production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Items
+  description: Register, upload, list, and manage dataset items.
+paths:
+  /v2/teams/{team_slug}/items:
+    get:
+      operationId: listItems
+      tags:
+      - Items
+      summary: List items
+      description: Returns a paginated list of items for the given filters.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      - name: dataset_ids[]
+        in: query
+        description: Filter items by one or more dataset IDs.
+        required: true
+        schema:
+          type: array
+          items:
+            type: integer
+      - name: page[size]
+        in: query
+        schema:
+          type: integer
+          default: 50
+      - name: page[offset]
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: A paginated list of items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemList'
+    delete:
+      operationId: deleteItems
+      tags:
+      - Items
+      summary: Delete items
+      description: Deletes the items selected by the provided filters.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemFilterRequest'
+      responses:
+        '204':
+          description: Items deleted.
+  /v2/teams/{team_slug}/items/{item_id}:
+    get:
+      operationId: getItem
+      tags:
+      - Items
+      summary: Get an item
+      description: Returns the item with the provided ID.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      - $ref: '#/components/parameters/ItemId'
+      responses:
+        '200':
+          description: The requested item.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /v2/teams/{team_slug}/items/register_upload:
+    post:
+      operationId: registerUpload
+      tags:
+      - Items
+      summary: Register locally stored data
+      description: Registers locally stored files for upload to a dataset, returning upload IDs to be signed and confirmed.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterUploadRequest'
+      responses:
+        '200':
+          description: Registered items with upload IDs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterUploadResponse'
+  /v2/teams/{team_slug}/items/uploads/{upload_id}/sign:
+    get:
+      operationId: signUpload
+      tags:
+      - Items
+      summary: Sign upload of locally stored files
+      description: Returns a pre-signed URL for uploading the registered file.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      - name: upload_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A signed upload URL.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  upload_url:
+                    type: string
+                    format: uri
+  /v2/teams/{team_slug}/items/uploads/{upload_id}/confirm:
+    post:
+      operationId: confirmUpload
+      tags:
+      - Items
+      summary: Confirm locally registered files
+      description: Confirms that the upload has completed to finalize registration.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      - name: upload_id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Upload confirmed.
+  /v2/teams/{team_slug}/items/register_existing:
+    post:
+      operationId: registerExisting
+      tags:
+      - Items
+      summary: Register externally stored data (read-write)
+      description: Registers files in external storage with read-write access.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterExistingRequest'
+      responses:
+        '200':
+          description: Registered external items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterUploadResponse'
+  /v2/teams/{team_slug}/items/register_existing_readonly:
+    post:
+      operationId: registerExistingReadonly
+      tags:
+      - Items
+      summary: Register externally stored data (read-only)
+      description: Registers files in external storage with read-only access.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterExistingRequest'
+      responses:
+        '200':
+          description: Registered external read-only items.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterUploadResponse'
+  /v2/teams/{team_slug}/items/archive:
+    post:
+      operationId: archiveItems
+      tags:
+      - Items
+      summary: Archive items
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemFilterRequest'
+      responses:
+        '200':
+          description: Items archived.
+  /v2/teams/{team_slug}/items/restore:
+    post:
+      operationId: restoreItems
+      tags:
+      - Items
+      summary: Restore items
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemFilterRequest'
+      responses:
+        '200':
+          description: Items restored.
+components:
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      description: The UUID of the item.
+      schema:
+        type: string
+        format: uuid
+  schemas:
+    RegisterUploadRequest:
+      type: object
+      required:
+      - items
+      - dataset_slug
+      properties:
+        dataset_slug:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              path:
+                type: string
+              slots:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slot_name:
+                      type: string
+                    file_name:
+                      type: string
+    Item:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        path:
+          type: string
+        status:
+          type: string
+          enum:
+          - new
+          - annotate
+          - review
+          - complete
+          - archived
+        dataset_id:
+          type: integer
+        priority:
+          type: integer
+        slots:
+          type: array
+          items:
+            $ref: '#/components/schemas/Slot'
+    ItemFilters:
+      type: object
+      properties:
+        dataset_ids:
+          type: array
+          items:
+            type: integer
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        statuses:
+          type: array
+          items:
+            type: string
+    Page:
+      type: object
+      properties:
+        count:
+          type: integer
+        next_id:
+          type: string
+        previous_id:
+          type: string
+    Error:
+      type: object
+      properties:
+        errors:
+          type: object
+        message:
+          type: string
+    RegisterUploadResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              slots:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    upload_id:
+                      type: string
+        blocked_items:
+          type: array
+          items:
+            type: object
+    Slot:
+      type: object
+      properties:
+        slot_name:
+          type: string
+        file_name:
+          type: string
+        type:
+          type: string
+          enum:
+          - image
+          - video
+          - pdf
+          - dicom
+    ItemList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        page:
+          $ref: '#/components/schemas/Page'
+    ItemFilterRequest:
+      type: object
+      required:
+      - filters
+      properties:
+        filters:
+          $ref: '#/components/schemas/ItemFilters'
+    RegisterExistingRequest:
+      type: object
+      required:
+      - items
+      - dataset_slug
+      - storage_name
+      properties:
+        dataset_slug:
+          type: string
+        storage_name:
+          type: string
+          description: Name of the configured external storage.
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              path:
+                type: string
+              storage_key:
+                type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Team-scoped API key sent as `Authorization: ApiKey {key}`. Generate keys at https://darwin.v7labs.com/?settings=api-keys. Key permissions determine which operations are allowed.'

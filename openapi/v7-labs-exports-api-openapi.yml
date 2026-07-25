@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: V7 Darwin Annotations Exports API
+  description: 'REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.'
+  termsOfService: https://www.v7labs.com/terms
+  contact:
+    name: V7 Support
+    url: https://docs.v7labs.com
+  version: '2.0'
+servers:
+- url: https://darwin.v7labs.com/api
+  description: V7 Darwin production API
+security:
+- ApiKeyAuth: []
+tags:
+- name: Exports
+  description: Request and manage dataset exports (releases).
+paths:
+  /v2/teams/{team_slug}/datasets/{dataset_slug}/exports:
+    get:
+      operationId: listExports
+      tags:
+      - Exports
+      summary: List exports
+      description: Lists all available exports (releases) for a dataset.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      - $ref: '#/components/parameters/DatasetSlug'
+      responses:
+        '200':
+          description: A list of exports.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Export'
+    post:
+      operationId: createExport
+      tags:
+      - Exports
+      summary: Create an export
+      description: Requests a new export, processed asynchronously.
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      - $ref: '#/components/parameters/DatasetSlug'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExportRequest'
+      responses:
+        '200':
+          description: The created export.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+  /v2/teams/{team_slug}/datasets/{dataset_slug}/exports/{name}:
+    get:
+      operationId: showExport
+      tags:
+      - Exports
+      summary: Show export
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      - $ref: '#/components/parameters/DatasetSlug'
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The requested export.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Export'
+    delete:
+      operationId: deleteExport
+      tags:
+      - Exports
+      summary: Delete export
+      parameters:
+      - $ref: '#/components/parameters/TeamSlug'
+      - $ref: '#/components/parameters/DatasetSlug'
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Export removed.
+components:
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+    DatasetSlug:
+      name: dataset_slug
+      in: path
+      required: true
+      description: The slug of the dataset.
+      schema:
+        type: string
+  schemas:
+    CreateExportRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        format:
+          type: string
+          enum:
+          - json
+          - darwin_json_2
+          - coco
+          - cvat
+          - pascal_voc
+          - yolo
+          default: darwin_json_2
+        include_authorship:
+          type: boolean
+        include_export_token:
+          type: boolean
+        filters:
+          $ref: '#/components/schemas/ItemFilters'
+    ItemFilters:
+      type: object
+      properties:
+        dataset_ids:
+          type: array
+          items:
+            type: integer
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        statuses:
+          type: array
+          items:
+            type: string
+    Export:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - complete
+          - failed
+        format:
+          type: string
+        download_url:
+          type: string
+          format: uri
+        inserted_at:
+          type: string
+          format: date-time
+        version:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Team-scoped API key sent as `Authorization: ApiKey {key}`. Generate keys at https://darwin.v7labs.com/?settings=api-keys. Key permissions determine which operations are allowed.'
