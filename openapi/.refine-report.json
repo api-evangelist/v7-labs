@@ -1,0 +1,24 @@
+{
+  "provider": "v7-labs",
+  "sources": [
+    "v7-labs-annotations-api-openapi.yml",
+    "v7-labs-classes-api-openapi.yml",
+    "v7-labs-datasets-api-openapi.yml",
+    "v7-labs-exports-api-openapi.yml",
+    "v7-labs-items-api-openapi.yml",
+    "v7-labs-workflows-api-openapi.yml"
+  ],
+  "outputs": [
+    "v7-labs-annotations-api-openapi.yml",
+    "v7-labs-classes-api-openapi.yml",
+    "v7-labs-datasets-api-openapi.yml",
+    "v7-labs-exports-api-openapi.yml",
+    "v7-labs-items-api-openapi.yml",
+    "v7-labs-workflows-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
