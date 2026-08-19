@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "V7 Darwin Annotations Workflows API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List workflows",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/workflows",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ]
+          },
+          "docs": "List workflows"
+        },
+        {
+          "info": {
+            "name": "Create workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/workflows",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create workflow"
+        },
+        {
+          "info": {
+            "name": "Get workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/workflows/:id",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get workflow"
+        },
+        {
+          "info": {
+            "name": "Set stage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/stage",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the workflow stage of the items matched by the filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

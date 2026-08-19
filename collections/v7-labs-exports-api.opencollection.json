@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "V7 Darwin Annotations Exports API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List exports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/datasets/:dataset_slug/exports",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "dataset_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the dataset."
+              }
+            ]
+          },
+          "docs": "Lists all available exports (releases) for a dataset."
+        },
+        {
+          "info": {
+            "name": "Create an export",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/datasets/:dataset_slug/exports",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "dataset_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the dataset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Requests a new export, processed asynchronously."
+        },
+        {
+          "info": {
+            "name": "Show export",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/datasets/:dataset_slug/exports/:name",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "dataset_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the dataset."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Show export"
+        },
+        {
+          "info": {
+            "name": "Delete export",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/datasets/:dataset_slug/exports/:name",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "dataset_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the dataset."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete export"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

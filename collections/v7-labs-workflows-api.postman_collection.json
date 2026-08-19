@@ -1,0 +1,554 @@
+{
+  "item": [
+    {
+      "id": "b3ec2879-e7b8-4b6d-80c3-d6c041adcf58",
+      "name": "Workflows",
+      "description": {
+        "content": "Manage multi-stage annotation workflows and stages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "24094dbd-98d6-4d4b-9a5b-dfa5b41e33ed",
+          "name": "List workflows",
+          "request": {
+            "name": "List workflows",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "876dbb60-c701-43cb-944c-8a8c0f10de05",
+              "name": "A list of workflows.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"dbb3b84e-3c9c-c50e-07d3-c51059c4a65c\",\n    \"name\": \"string\",\n    \"dataset\": {\n      \"id\": 2623,\n      \"name\": \"string\"\n    },\n    \"stages\": [\n      {\n        \"id\": \"89cae0c4-081e-9716-8de8-112015fe6cd9\",\n        \"name\": \"string\",\n        \"type\": \"dataset\"\n      },\n      {\n        \"id\": \"70b3765e-c421-ff07-bf4e-1370d835b6d6\",\n        \"name\": \"string\",\n        \"type\": \"review\"\n      }\n    ]\n  },\n  {\n    \"id\": \"b902ccd8-c95c-23c2-b7a7-271dc1d46a83\",\n    \"name\": \"string\",\n    \"dataset\": {\n      \"id\": 752,\n      \"name\": \"string\"\n    },\n    \"stages\": [\n      {\n        \"id\": \"a998729c-6c87-efda-0a6b-0ec11df6cda7\",\n        \"name\": \"string\",\n        \"type\": \"discard\"\n      },\n      {\n        \"id\": \"4f334e1e-ce32-1301-3d56-291d0ec4a166\",\n        \"name\": \"string\",\n        \"type\": \"annotate\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22f377b4-2ed3-48cc-acca-05b17b79116c",
+          "name": "Create workflow",
+          "request": {
+            "name": "Create workflow",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"dataset\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"stages\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"edges\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"edges\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7c3f1c3c-0f7c-4a1b-9bba-74b86d71ca45",
+              "name": "The created workflow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"dataset\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"stages\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"edges\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"edges\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"dataset\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"stages\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"edges\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"edges\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8fd07cc-ebf6-4c20-bb54-3f4204b2f3a2",
+          "name": "Get workflow",
+          "request": {
+            "name": "Get workflow",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "workflows",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e01d6114-ccc6-4cd4-93b2-c9616d6bf4c2",
+              "name": "The requested workflow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "workflows",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"dataset\": {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\"\n  },\n  \"stages\": [\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"edges\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"edges\": [\n        \"<object>\",\n        \"<object>\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3083c3cd-c361-4e48-bd54-8b11eb680632",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "workflows",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "afcc3402-5338-41ad-b53d-ae65d8272502",
+          "name": "Set stage",
+          "request": {
+            "name": "Set stage",
+            "description": {
+              "content": "Sets the workflow stage of the items matched by the filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                "stage"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"stage_id\": \"<uuid>\",\n  \"workflow_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6df9454-a2c4-4a62-acdd-1e0dff01a5dc",
+              "name": "Stage updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    "stage"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"stage_id\": \"<uuid>\",\n  \"workflow_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://darwin.v7labs.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "bf625876-0aa1-41ab-9bb6-8fb364dd5d69",
+    "name": "V7 Darwin Annotations Workflows API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.\n\nContact Support:\n Name: V7 Support",
+      "type": "text/plain"
+    }
+  }
+}

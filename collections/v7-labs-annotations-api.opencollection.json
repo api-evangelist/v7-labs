@@ -1,0 +1,80 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "V7 Darwin Annotations API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Annotations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List item annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/:item_id/annotations",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the item."
+              }
+            ]
+          },
+          "docs": "Returns the annotations attached to the given item."
+        },
+        {
+          "info": {
+            "name": "Import annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/:item_id/import",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the item."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Imports annotations (in Darwin JSON v2.0 format) created outside of V7 onto the given item."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

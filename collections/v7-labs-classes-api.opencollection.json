@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "V7 Darwin Annotations Classes API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List annotation classes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/annotation_classes",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ]
+          },
+          "docs": "Lists the annotation classes for the team."
+        },
+        {
+          "info": {
+            "name": "Update annotation class",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/annotation_classes/:class_id",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "class_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update annotation class"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

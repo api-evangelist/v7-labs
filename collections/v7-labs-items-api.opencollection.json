@@ -1,0 +1,272 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "V7 Darwin Annotations Items API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "dataset_ids[]",
+                "value": "",
+                "type": "query",
+                "description": "Filter items by one or more dataset IDs."
+              },
+              {
+                "name": "page[size]",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page[offset]",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a paginated list of items for the given filters."
+        },
+        {
+          "info": {
+            "name": "Delete items",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Deletes the items selected by the provided filters."
+        },
+        {
+          "info": {
+            "name": "Get an item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/:item_id",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "item_id",
+                "value": "",
+                "type": "path",
+                "description": "The UUID of the item."
+              }
+            ]
+          },
+          "docs": "Returns the item with the provided ID."
+        },
+        {
+          "info": {
+            "name": "Register locally stored data",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/register_upload",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers locally stored files for upload to a dataset, returning upload IDs to be signed and confirmed."
+        },
+        {
+          "info": {
+            "name": "Sign upload of locally stored files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/uploads/:upload_id/sign",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a pre-signed URL for uploading the registered file."
+        },
+        {
+          "info": {
+            "name": "Confirm locally registered files",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/uploads/:upload_id/confirm",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              },
+              {
+                "name": "upload_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Confirms that the upload has completed to finalize registration."
+        },
+        {
+          "info": {
+            "name": "Register externally stored data (read-write)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/register_existing",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers files in external storage with read-write access."
+        },
+        {
+          "info": {
+            "name": "Register externally stored data (read-only)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/register_existing_readonly",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Registers files in external storage with read-only access."
+        },
+        {
+          "info": {
+            "name": "Archive items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/archive",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Archive items"
+        },
+        {
+          "info": {
+            "name": "Restore items",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/v2/teams/:team_slug/items/restore",
+            "params": [
+              {
+                "name": "team_slug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the team that owns the resource."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Restore items"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

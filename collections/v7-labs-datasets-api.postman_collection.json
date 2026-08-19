@@ -1,0 +1,368 @@
+{
+  "item": [
+    {
+      "id": "2fa34712-aa4f-4bd4-944b-c1b12ca7bc52",
+      "name": "Datasets",
+      "description": {
+        "content": "Create and manage datasets.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "09a6d548-12c9-4415-acd1-1212883cb16e",
+          "name": "List datasets",
+          "request": {
+            "name": "List datasets",
+            "description": {
+              "content": "Returns the datasets accessible to the authenticated team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34790139-3fc8-4c11-8462-c35e877ecbf2",
+              "name": "A list of datasets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 6940,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"num_images\": 9901,\n    \"num_videos\": 508,\n    \"progress\": 1195.1356550074865\n  },\n  {\n    \"id\": 6221,\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"num_images\": 9043,\n    \"num_videos\": 4069,\n    \"progress\": 9199.882210663154\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc65717b-6909-44e6-b656-3b8576355b77",
+          "name": "Create a dataset",
+          "request": {
+            "name": "Create a dataset",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "822a46bc-8520-444c-a886-0611a37df14b",
+              "name": "The created dataset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2950,\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"num_images\": 4636,\n  \"num_videos\": 4898,\n  \"progress\": 4495.39260137374\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "687a198c-7733-4ae8-b5ee-72995e20f986",
+          "name": "Get a dataset",
+          "request": {
+            "name": "Get a dataset",
+            "description": {},
+            "url": {
+              "path": [
+                "datasets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) The numeric dataset ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f807a3c-b47f-4444-b722-ccc24661f57f",
+              "name": "The requested dataset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The numeric dataset ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2950,\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"num_images\": 4636,\n  \"num_videos\": 4898,\n  \"progress\": 4495.39260137374\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae4b90b8-584e-4978-87e1-edebb90b3471",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datasets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) The numeric dataset ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://darwin.v7labs.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7b5b5383-c157-4321-992b-7b1511027fa5",
+    "name": "V7 Darwin Annotations Datasets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.\n\nContact Support:\n Name: V7 Support",
+      "type": "text/plain"
+    }
+  }
+}

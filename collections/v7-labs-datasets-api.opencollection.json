@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "V7 Darwin Annotations Datasets API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/datasets"
+          },
+          "docs": "Returns the datasets accessible to the authenticated team."
+        },
+        {
+          "info": {
+            "name": "Create a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://darwin.v7labs.com/api/datasets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a dataset"
+        },
+        {
+          "info": {
+            "name": "Get a dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://darwin.v7labs.com/api/datasets/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "The numeric dataset ID."
+              }
+            ]
+          },
+          "docs": "Get a dataset"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

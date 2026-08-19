@@ -1,0 +1,1303 @@
+{
+  "item": [
+    {
+      "id": "429848ed-635a-4f4c-bb4d-fc45505e79be",
+      "name": "Items",
+      "description": {
+        "content": "Register, upload, list, and manage dataset items.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "84541373-e325-4f2e-9983-f5b5ff6821ba",
+          "name": "List items",
+          "request": {
+            "name": "List items",
+            "description": {
+              "content": "Returns a paginated list of items for the given filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dataset_ids[]",
+                  "value": "<integer>",
+                  "description": "(Required) Filter items by one or more dataset IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "dataset_ids[]",
+                  "value": "<integer>",
+                  "description": "(Required) Filter items by one or more dataset IDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[offset]",
+                  "value": "0"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13e96c49-41e6-4e97-9ac4-f42bbf731d41",
+              "name": "A paginated list of items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dataset_ids[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "dataset_ids[]",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "50"
+                    },
+                    {
+                      "key": "page[offset]",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"da21c0fe-2d67-2877-3af8-c2a85097a322\",\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"status\": \"review\",\n      \"dataset_id\": 5999,\n      \"priority\": 3494,\n      \"slots\": [\n        {\n          \"slot_name\": \"string\",\n          \"file_name\": \"string\",\n          \"type\": \"image\"\n        },\n        {\n          \"slot_name\": \"string\",\n          \"file_name\": \"string\",\n          \"type\": \"video\"\n        }\n      ]\n    },\n    {\n      \"id\": \"d3d46437-8326-1fa3-b496-5a0718ce0cd7\",\n      \"name\": \"string\",\n      \"path\": \"string\",\n      \"status\": \"review\",\n      \"dataset_id\": 5897,\n      \"priority\": 8557,\n      \"slots\": [\n        {\n          \"slot_name\": \"string\",\n          \"file_name\": \"string\",\n          \"type\": \"dicom\"\n        },\n        {\n          \"slot_name\": \"string\",\n          \"file_name\": \"string\",\n          \"type\": \"dicom\"\n        }\n      ]\n    }\n  ],\n  \"page\": {\n    \"count\": 3216,\n    \"next_id\": \"string\",\n    \"previous_id\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d290060b-e8e8-4c07-846e-87316dc4b85a",
+          "name": "Delete items",
+          "request": {
+            "name": "Delete items",
+            "description": {
+              "content": "Deletes the items selected by the provided filters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bed7ff9f-91ff-410d-8e68-7b3c20b2c47c",
+              "name": "Items deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "765b3dae-548a-4a27-b6a5-668774722027",
+          "name": "Get an item",
+          "request": {
+            "name": "Get an item",
+            "description": {
+              "content": "Returns the item with the provided ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                ":item_id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "item_id",
+                  "description": "(Required) The UUID of the item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0170c8e5-91f3-40b4-a3cb-94b4b2c26a77",
+              "name": "The requested item.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "item_id",
+                      "description": "(Required) The UUID of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"dfaa7aab-1460-a5cb-e9bd-78a9192d250a\",\n  \"name\": \"string\",\n  \"path\": \"string\",\n  \"status\": \"new\",\n  \"dataset_id\": 2139,\n  \"priority\": 5574,\n  \"slots\": [\n    {\n      \"slot_name\": \"string\",\n      \"file_name\": \"string\",\n      \"type\": \"video\"\n    },\n    {\n      \"slot_name\": \"string\",\n      \"file_name\": \"string\",\n      \"type\": \"video\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a68b6223-cd5d-40cd-8999-973e536faa10",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    ":item_id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "item_id",
+                      "description": "(Required) The UUID of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": {},\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ec6d99a1-ac66-4aa7-b890-9d3fe55e9837",
+          "name": "Register locally stored data",
+          "request": {
+            "name": "Register locally stored data",
+            "description": {
+              "content": "Registers locally stored files for upload to a dataset, returning upload IDs to be signed and confirmed.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                "register_upload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"slots\": [\n        {\n          \"slot_name\": \"<string>\",\n          \"file_name\": \"<string>\"\n        },\n        {\n          \"slot_name\": \"<string>\",\n          \"file_name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"slots\": [\n        {\n          \"slot_name\": \"<string>\",\n          \"file_name\": \"<string>\"\n        },\n        {\n          \"slot_name\": \"<string>\",\n          \"file_name\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"dataset_slug\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "39a487df-ca43-4864-9a9a-90486da6f9d8",
+              "name": "Registered items with upload IDs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    "register_upload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"slots\": [\n        {\n          \"slot_name\": \"<string>\",\n          \"file_name\": \"<string>\"\n        },\n        {\n          \"slot_name\": \"<string>\",\n          \"file_name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"slots\": [\n        {\n          \"slot_name\": \"<string>\",\n          \"file_name\": \"<string>\"\n        },\n        {\n          \"slot_name\": \"<string>\",\n          \"file_name\": \"<string>\"\n        }\n      ]\n    }\n  ],\n  \"dataset_slug\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"f66795fb-8196-04b0-14d0-697d1c158dbd\",\n      \"name\": \"string\",\n      \"slots\": [\n        {\n          \"upload_id\": \"string\"\n        },\n        {\n          \"upload_id\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"36bd81db-d153-4c80-c686-38b2824dc08d\",\n      \"name\": \"string\",\n      \"slots\": [\n        {\n          \"upload_id\": \"string\"\n        },\n        {\n          \"upload_id\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "065c3e28-d3c4-4f07-9dac-25397c613ec0",
+          "name": "Sign upload of locally stored files",
+          "request": {
+            "name": "Sign upload of locally stored files",
+            "description": {
+              "content": "Returns a pre-signed URL for uploading the registered file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                "uploads",
+                ":upload_id",
+                "sign"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "upload_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bd4c5bb-b201-4edc-b8d7-8e342ea5b222",
+              "name": "A signed upload URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    "uploads",
+                    ":upload_id",
+                    "sign"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "upload_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"upload_url\": \"http://CRQOyBBLPwzV.qplgVJ2yBExBcPex5wpgprHedXkE9auCVG8Y\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c3e444eb-78b2-4206-b630-deb200f87197",
+          "name": "Confirm locally registered files",
+          "request": {
+            "name": "Confirm locally registered files",
+            "description": {
+              "content": "Confirms that the upload has completed to finalize registration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                "uploads",
+                ":upload_id",
+                "confirm"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "upload_id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6b5f2fcb-89a8-40d2-bdd6-fe56cfeb299e",
+              "name": "Upload confirmed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    "uploads",
+                    ":upload_id",
+                    "confirm"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "upload_id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bdcdbee1-ddf6-4bab-bc3b-3cdbf7770ce3",
+          "name": "Register externally stored data (read-write)",
+          "request": {
+            "name": "Register externally stored data (read-write)",
+            "description": {
+              "content": "Registers files in external storage with read-write access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                "register_existing"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"storage_key\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"storage_key\": \"<string>\"\n    }\n  ],\n  \"dataset_slug\": \"<string>\",\n  \"storage_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2afac20f-a157-46d0-baac-a27297424080",
+              "name": "Registered external items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    "register_existing"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"storage_key\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"storage_key\": \"<string>\"\n    }\n  ],\n  \"dataset_slug\": \"<string>\",\n  \"storage_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"962bb99c-434a-1a0f-44a3-9b9ad477c51c\",\n      \"name\": \"string\",\n      \"slots\": [\n        {\n          \"upload_id\": \"string\"\n        },\n        {\n          \"upload_id\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"f7d906e4-4953-98c9-3ef4-8c141c23cdf7\",\n      \"name\": \"string\",\n      \"slots\": [\n        {\n          \"upload_id\": \"string\"\n        },\n        {\n          \"upload_id\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63e40a8e-bf56-4823-a6a0-73d7fbf55f9d",
+          "name": "Register externally stored data (read-only)",
+          "request": {
+            "name": "Register externally stored data (read-only)",
+            "description": {
+              "content": "Registers files in external storage with read-only access.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                "register_existing_readonly"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"storage_key\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"storage_key\": \"<string>\"\n    }\n  ],\n  \"dataset_slug\": \"<string>\",\n  \"storage_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1ff517e-5752-4a9c-9ab3-ece0a4aa8c51",
+              "name": "Registered external read-only items.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    "register_existing_readonly"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"storage_key\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"path\": \"<string>\",\n      \"storage_key\": \"<string>\"\n    }\n  ],\n  \"dataset_slug\": \"<string>\",\n  \"storage_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"items\": [\n    {\n      \"id\": \"962bb99c-434a-1a0f-44a3-9b9ad477c51c\",\n      \"name\": \"string\",\n      \"slots\": [\n        {\n          \"upload_id\": \"string\"\n        },\n        {\n          \"upload_id\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"f7d906e4-4953-98c9-3ef4-8c141c23cdf7\",\n      \"name\": \"string\",\n      \"slots\": [\n        {\n          \"upload_id\": \"string\"\n        },\n        {\n          \"upload_id\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f9b40bfd-cc2a-4308-9d45-4da34a6f024f",
+          "name": "Archive items",
+          "request": {
+            "name": "Archive items",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                "archive"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef5a42c9-a613-4faa-b944-f6eea9d8a48d",
+              "name": "Items archived.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    "archive"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ca91fbb0-ad1b-40e6-90f1-94c17d6a78f5",
+          "name": "Restore items",
+          "request": {
+            "name": "Restore items",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                "restore"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be1ba0ec-b056-48db-baf5-f9195aa07aed",
+              "name": "Items restored.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    "restore"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://darwin.v7labs.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c0e83327-e269-45ba-a511-f62a67041c75",
+    "name": "V7 Darwin Annotations Items API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.\n\nContact Support:\n Name: V7 Support",
+      "type": "text/plain"
+    }
+  }
+}

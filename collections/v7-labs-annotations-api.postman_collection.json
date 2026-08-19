@@ -1,0 +1,298 @@
+{
+  "item": [
+    {
+      "id": "c2a82118-f1b1-4679-8596-5d94577de2b8",
+      "name": "Annotations",
+      "description": {
+        "content": "Read and import item annotations.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c309a94c-65a6-4063-8446-31e1196b681c",
+          "name": "List item annotations",
+          "request": {
+            "name": "List item annotations",
+            "description": {
+              "content": "Returns the annotations attached to the given item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                ":item_id",
+                "annotations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "item_id",
+                  "description": "(Required) The UUID of the item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c409de79-0bfe-49c3-8a98-cf4701b90302",
+              "name": "The item's annotations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    ":item_id",
+                    "annotations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "item_id",
+                      "description": "(Required) The UUID of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"09c09254-ef24-2576-1403-11afb26d99ea\",\n    \"annotation_class_id\": 2409,\n    \"name\": \"string\",\n    \"data\": {}\n  },\n  {\n    \"id\": \"d727bd0e-991a-31c4-e251-39155cc2b9c3\",\n    \"annotation_class_id\": 8651,\n    \"name\": \"string\",\n    \"data\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62aace19-69ea-467f-9769-78284692add8",
+          "name": "Import annotations",
+          "request": {
+            "name": "Import annotations",
+            "description": {
+              "content": "Imports annotations (in Darwin JSON v2.0 format) created outside of V7 onto the given item.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "items",
+                ":item_id",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "item_id",
+                  "description": "(Required) The UUID of the item."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"annotations\": [\n    {\n      \"id\": \"<uuid>\",\n      \"annotation_class_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"data\": \"<object>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"annotation_class_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"data\": \"<object>\"\n    }\n  ],\n  \"overwrite\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "577163b0-6da7-4a1c-8c33-5aeb1baadc50",
+              "name": "Annotations imported.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "items",
+                    ":item_id",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "item_id",
+                      "description": "(Required) The UUID of the item."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"annotations\": [\n    {\n      \"id\": \"<uuid>\",\n      \"annotation_class_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"data\": \"<object>\"\n    },\n    {\n      \"id\": \"<uuid>\",\n      \"annotation_class_id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"data\": \"<object>\"\n    }\n  ],\n  \"overwrite\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://darwin.v7labs.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "42a4a4f8-ad1b-4405-9558-50a1831a3fa5",
+    "name": "V7 Darwin Annotations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.\n\nContact Support:\n Name: V7 Support",
+      "type": "text/plain"
+    }
+  }
+}

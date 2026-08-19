@@ -1,0 +1,558 @@
+{
+  "item": [
+    {
+      "id": "b275beb8-b7d2-4822-a82d-6fb402836ecb",
+      "name": "Exports",
+      "description": {
+        "content": "Request and manage dataset exports (releases).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c9547b5f-2a0c-49e6-9459-57f976211839",
+          "name": "List exports",
+          "request": {
+            "name": "List exports",
+            "description": {
+              "content": "Lists all available exports (releases) for a dataset.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "datasets",
+                ":dataset_slug",
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset_slug",
+                  "description": "(Required) The slug of the dataset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b063b192-4a27-49bd-94a4-0e89eddce223",
+              "name": "A list of exports.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "datasets",
+                    ":dataset_slug",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_slug",
+                      "description": "(Required) The slug of the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"string\",\n    \"status\": \"complete\",\n    \"format\": \"string\",\n    \"download_url\": \"https://lbxVnr.fxqdZ3Ienwb6lwdJZ-RUIh\",\n    \"inserted_at\": \"1978-06-04T12:33:17.174Z\",\n    \"version\": \"string\"\n  },\n  {\n    \"name\": \"string\",\n    \"status\": \"running\",\n    \"format\": \"string\",\n    \"download_url\": \"http://SHzVwCepEsnBiXnvcqAqQvRRCytW.bsyBnSTUbZiZ+WOf\",\n    \"inserted_at\": \"2000-11-04T22:43:33.035Z\",\n    \"version\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc144bee-6cc0-4732-abf6-0a81d64ef072",
+          "name": "Create an export",
+          "request": {
+            "name": "Create an export",
+            "description": {
+              "content": "Requests a new export, processed asynchronously.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "datasets",
+                ":dataset_slug",
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset_slug",
+                  "description": "(Required) The slug of the dataset."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"format\": \"darwin_json_2\",\n  \"include_authorship\": \"<boolean>\",\n  \"include_export_token\": \"<boolean>\",\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2fcaea45-bb63-4b54-bd61-a54993b1c845",
+              "name": "The created export.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "datasets",
+                    ":dataset_slug",
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_slug",
+                      "description": "(Required) The slug of the dataset."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"format\": \"darwin_json_2\",\n  \"include_authorship\": \"<boolean>\",\n  \"include_export_token\": \"<boolean>\",\n  \"filters\": {\n    \"dataset_ids\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"item_ids\": [\n      \"<uuid>\",\n      \"<uuid>\"\n    ],\n    \"statuses\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"status\": \"pending\",\n  \"format\": \"string\",\n  \"download_url\": \"https://WmYqSEmzOdmuykYDrNvDiCihhv.hxnjEFso-V2+\",\n  \"inserted_at\": \"2015-09-30T23:48:36.984Z\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61e46d0e-e87b-4998-874b-fc3327a364af",
+          "name": "Show export",
+          "request": {
+            "name": "Show export",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "datasets",
+                ":dataset_slug",
+                "exports",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset_slug",
+                  "description": "(Required) The slug of the dataset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9fe672e2-ad9e-4099-a512-f7c9a8adf246",
+              "name": "The requested export.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "datasets",
+                    ":dataset_slug",
+                    "exports",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_slug",
+                      "description": "(Required) The slug of the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"status\": \"pending\",\n  \"format\": \"string\",\n  \"download_url\": \"https://WmYqSEmzOdmuykYDrNvDiCihhv.hxnjEFso-V2+\",\n  \"inserted_at\": \"2015-09-30T23:48:36.984Z\",\n  \"version\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8884937-22c8-487c-8cf3-c7e9a34f4e5f",
+          "name": "Delete export",
+          "request": {
+            "name": "Delete export",
+            "description": {},
+            "url": {
+              "path": [
+                "v2",
+                "teams",
+                ":team_slug",
+                "datasets",
+                ":dataset_slug",
+                "exports",
+                ":name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "team_slug",
+                  "description": "(Required) The slug of the team that owns the resource."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "dataset_slug",
+                  "description": "(Required) The slug of the dataset."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "name",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "167763c4-5518-48f4-a671-fe6a960b93ae",
+              "name": "Export removed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "teams",
+                    ":team_slug",
+                    "datasets",
+                    ":dataset_slug",
+                    "exports",
+                    ":name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "team_slug",
+                      "description": "(Required) The slug of the team that owns the resource."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "dataset_slug",
+                      "description": "(Required) The slug of the dataset."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "name",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://darwin.v7labs.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "22843a1f-ee14-40b1-9878-ec25d59e2471",
+    "name": "V7 Darwin Annotations Exports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.\n\nContact Support:\n Name: V7 Support",
+      "type": "text/plain"
+    }
+  }
+}
