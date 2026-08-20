@@ -23,6 +23,13 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/v7-labs.png
 tags:
+- Artificial Intelligence
+- Training Data
+- Data Labeling
+- Annotation
+- Document AI
+- Computer-Vision
+tags_raw:
 - AI
 - Training Data
 - Data Labeling
@@ -99,6 +106,8 @@ apis:
   humanURL: https://docs.v7labs.com/reference/introduction
   baseURL: https://darwin.v7labs.com/api
   tags:
+  - Export
+  tags_raw:
   - Exports
   properties:
   - type: OpenAPI
@@ -119,6 +128,8 @@ apis:
   humanURL: https://docs.v7labs.com/reference/introduction
   baseURL: https://darwin.v7labs.com/api
   tags:
+  - Item
+  tags_raw:
   - Items
   properties:
   - type: OpenAPI
