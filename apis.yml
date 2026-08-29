@@ -8,6 +8,18 @@ description: V7 is an AI training-data and document-automation company. V7 Darwi
   work with agentic AI. The Darwin REST API at https://darwin.v7labs.com/api manages
   datasets, items, annotations, classes, workflow stages, and exports using ApiKey
   authentication.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
