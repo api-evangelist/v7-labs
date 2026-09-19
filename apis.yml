@@ -59,6 +59,8 @@ apis:
   humanURL: https://docs.v7labs.com/reference/introduction
   baseURL: https://darwin.v7labs.com/api
   tags:
+  - Annotation
+  tags_raw:
   - Annotations
   properties:
   - type: OpenAPI
