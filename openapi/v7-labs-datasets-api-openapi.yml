@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: V7 Darwin Annotations Datasets API
+  title: V7 Darwin Datasets API
   description: 'REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.'
   termsOfService: https://www.v7labs.com/terms
   contact:
@@ -76,13 +76,6 @@ components:
       properties:
         name:
           type: string
-    Error:
-      type: object
-      properties:
-        errors:
-          type: object
-        message:
-          type: string
     Dataset:
       type: object
       properties:
@@ -99,6 +92,20 @@ components:
         progress:
           type: number
           format: float
+    Error:
+      type: object
+      properties:
+        errors:
+          type: object
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     DatasetId:
       name: id
@@ -107,13 +114,6 @@ components:
       description: The numeric dataset ID.
       schema:
         type: integer
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

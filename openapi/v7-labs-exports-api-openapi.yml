@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: V7 Darwin Annotations Exports API
+  title: V7 Darwin Exports API
   description: 'REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.'
   termsOfService: https://www.v7labs.com/terms
   contact:
@@ -95,22 +95,23 @@ paths:
         '204':
           description: Export removed.
 components:
-  parameters:
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
-    DatasetSlug:
-      name: dataset_slug
-      in: path
-      required: true
-      description: The slug of the dataset.
-      schema:
-        type: string
   schemas:
+    ItemFilters:
+      type: object
+      properties:
+        dataset_ids:
+          type: array
+          items:
+            type: integer
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        statuses:
+          type: array
+          items:
+            type: string
     CreateExportRequest:
       type: object
       required:
@@ -134,22 +135,6 @@ components:
           type: boolean
         filters:
           $ref: '#/components/schemas/ItemFilters'
-    ItemFilters:
-      type: object
-      properties:
-        dataset_ids:
-          type: array
-          items:
-            type: integer
-        item_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-        statuses:
-          type: array
-          items:
-            type: string
     Export:
       type: object
       properties:
@@ -172,6 +157,21 @@ components:
           format: date-time
         version:
           type: string
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+    DatasetSlug:
+      name: dataset_slug
+      in: path
+      required: true
+      description: The slug of the dataset.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

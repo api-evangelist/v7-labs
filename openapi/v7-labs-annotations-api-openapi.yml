@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: V7 Darwin Annotations API
   description: 'REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.'
@@ -55,6 +55,32 @@ paths:
         '200':
           description: Annotations imported.
 components:
+  schemas:
+    Annotation:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        annotation_class_id:
+          type: integer
+        name:
+          type: string
+        data:
+          type: object
+          description: Geometry/value payload (bounding_box, polygon, keypoint, tag, etc.).
+    ImportAnnotationsRequest:
+      type: object
+      required:
+      - annotations
+      properties:
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Annotation'
+        overwrite:
+          type: boolean
+          default: false
   parameters:
     TeamSlug:
       name: team_slug
@@ -71,32 +97,6 @@ components:
       schema:
         type: string
         format: uuid
-  schemas:
-    ImportAnnotationsRequest:
-      type: object
-      required:
-      - annotations
-      properties:
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Annotation'
-        overwrite:
-          type: boolean
-          default: false
-    Annotation:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        annotation_class_id:
-          type: integer
-        name:
-          type: string
-        data:
-          type: object
-          description: Geometry/value payload (bounding_box, polygon, keypoint, tag, etc.).
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

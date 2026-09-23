@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: V7 Darwin Annotations Items API
+  title: V7 Darwin Items API
   description: 'REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.'
   termsOfService: https://www.v7labs.com/terms
   contact:
@@ -229,23 +229,23 @@ paths:
         '200':
           description: Items restored.
 components:
-  parameters:
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
-    ItemId:
-      name: item_id
-      in: path
-      required: true
-      description: The UUID of the item.
-      schema:
-        type: string
-        format: uuid
   schemas:
+    ItemFilters:
+      type: object
+      properties:
+        dataset_ids:
+          type: array
+          items:
+            type: integer
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        statuses:
+          type: array
+          items:
+            type: string
     RegisterUploadRequest:
       type: object
       required:
@@ -272,6 +272,69 @@ components:
                       type: string
                     file_name:
                       type: string
+    Page:
+      type: object
+      properties:
+        count:
+          type: integer
+        next_id:
+          type: string
+        previous_id:
+          type: string
+    RegisterUploadResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              slots:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    upload_id:
+                      type: string
+        blocked_items:
+          type: array
+          items:
+            type: object
+    ItemFilterRequest:
+      type: object
+      required:
+      - filters
+      properties:
+        filters:
+          $ref: '#/components/schemas/ItemFilters'
+    Slot:
+      type: object
+      properties:
+        slot_name:
+          type: string
+        file_name:
+          type: string
+        type:
+          type: string
+          enum:
+          - image
+          - video
+          - pdf
+          - dicom
+    ItemList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        page:
+          $ref: '#/components/schemas/Page'
     Item:
       type: object
       properties:
@@ -298,31 +361,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Slot'
-    ItemFilters:
-      type: object
-      properties:
-        dataset_ids:
-          type: array
-          items:
-            type: integer
-        item_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-        statuses:
-          type: array
-          items:
-            type: string
-    Page:
-      type: object
-      properties:
-        count:
-          type: integer
-        next_id:
-          type: string
-        previous_id:
-          type: string
     Error:
       type: object
       properties:
@@ -330,60 +368,6 @@ components:
           type: object
         message:
           type: string
-    RegisterUploadResponse:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              name:
-                type: string
-              slots:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    upload_id:
-                      type: string
-        blocked_items:
-          type: array
-          items:
-            type: object
-    Slot:
-      type: object
-      properties:
-        slot_name:
-          type: string
-        file_name:
-          type: string
-        type:
-          type: string
-          enum:
-          - image
-          - video
-          - pdf
-          - dicom
-    ItemList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
-        page:
-          $ref: '#/components/schemas/Page'
-    ItemFilterRequest:
-      type: object
-      required:
-      - filters
-      properties:
-        filters:
-          $ref: '#/components/schemas/ItemFilters'
     RegisterExistingRequest:
       type: object
       required:
@@ -407,6 +391,22 @@ components:
                 type: string
               storage_key:
                 type: string
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      description: The UUID of the item.
+      schema:
+        type: string
+        format: uuid
   responses:
     NotFound:
       description: The requested resource was not found.

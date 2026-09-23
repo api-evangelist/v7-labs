@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: V7 Darwin Annotations Workflows API
+  title: V7 Darwin Workflows API
   description: 'REST API for the V7 Darwin training-data platform. Manage datasets, register and upload items (images, video, documents), read and import annotations, orchestrate human-in-the-loop workflows and stages, manage annotation classes, and request dataset exports (releases). All requests are authenticated with an `Authorization: ApiKey {key}` header. Paths use the team slug as a path parameter; API keys are scoped to a team and their permissions determine which operations are allowed.'
   termsOfService: https://www.v7labs.com/terms
   contact:
@@ -95,21 +95,6 @@ paths:
           description: Stage updated.
 components:
   schemas:
-    SetStageRequest:
-      type: object
-      required:
-      - filters
-      - stage_id
-      - workflow_id
-      properties:
-        filters:
-          $ref: '#/components/schemas/ItemFilters'
-        stage_id:
-          type: string
-          format: uuid
-        workflow_id:
-          type: string
-          format: uuid
     ItemFilters:
       type: object
       properties:
@@ -126,13 +111,25 @@ components:
           type: array
           items:
             type: string
-    Error:
+    Workflow:
       type: object
       properties:
-        errors:
-          type: object
-        message:
+        id:
           type: string
+          format: uuid
+        name:
+          type: string
+        dataset:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        stages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage'
     Stage:
       type: object
       properties:
@@ -155,25 +152,28 @@ components:
           type: array
           items:
             type: object
-    Workflow:
+    SetStageRequest:
       type: object
+      required:
+      - filters
+      - stage_id
+      - workflow_id
       properties:
-        id:
+        filters:
+          $ref: '#/components/schemas/ItemFilters'
+        stage_id:
           type: string
           format: uuid
-        name:
+        workflow_id:
           type: string
-        dataset:
+          format: uuid
+    Error:
+      type: object
+      properties:
+        errors:
           type: object
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        stages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Stage'
+        message:
+          type: string
   parameters:
     TeamSlug:
       name: team_slug
