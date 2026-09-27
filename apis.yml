@@ -41,7 +41,7 @@ tags:
 - Data Labeling
 - Annotation
 - Document AI
-- Computer-Vision
+- Computer Vision
 tags_raw:
 - AI
 - Training Data
@@ -49,6 +49,7 @@ tags_raw:
 - Annotation
 - Document AI
 - Computer Vision
+- Computer-Vision
 created: '2026-06-21'
 modified: '2026-06-21'
 specificationVersion: '0.23'

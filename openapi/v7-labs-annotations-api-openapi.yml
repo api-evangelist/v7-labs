@@ -56,6 +56,18 @@ paths:
           description: Annotations imported.
 components:
   schemas:
+    ImportAnnotationsRequest:
+      type: object
+      required:
+      - annotations
+      properties:
+        annotations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Annotation'
+        overwrite:
+          type: boolean
+          default: false
     Annotation:
       type: object
       properties:
@@ -69,26 +81,7 @@ components:
         data:
           type: object
           description: Geometry/value payload (bounding_box, polygon, keypoint, tag, etc.).
-    ImportAnnotationsRequest:
-      type: object
-      required:
-      - annotations
-      properties:
-        annotations:
-          type: array
-          items:
-            $ref: '#/components/schemas/Annotation'
-        overwrite:
-          type: boolean
-          default: false
   parameters:
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
     ItemId:
       name: item_id
       in: path
@@ -97,6 +90,13 @@ components:
       schema:
         type: string
         format: uuid
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

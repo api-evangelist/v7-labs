@@ -96,22 +96,6 @@ paths:
           description: Export removed.
 components:
   schemas:
-    ItemFilters:
-      type: object
-      properties:
-        dataset_ids:
-          type: array
-          items:
-            type: integer
-        item_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-        statuses:
-          type: array
-          items:
-            type: string
     CreateExportRequest:
       type: object
       required:
@@ -135,6 +119,22 @@ components:
           type: boolean
         filters:
           $ref: '#/components/schemas/ItemFilters'
+    ItemFilters:
+      type: object
+      properties:
+        dataset_ids:
+          type: array
+          items:
+            type: integer
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        statuses:
+          type: array
+          items:
+            type: string
     Export:
       type: object
       properties:
@@ -158,18 +158,18 @@ components:
         version:
           type: string
   parameters:
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
     DatasetSlug:
       name: dataset_slug
       in: path
       required: true
       description: The slug of the dataset.
+      schema:
+        type: string
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
       schema:
         type: string
   securitySchemes:
