@@ -96,29 +96,6 @@ paths:
           description: Export removed.
 components:
   schemas:
-    CreateExportRequest:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-        format:
-          type: string
-          enum:
-          - json
-          - darwin_json_2
-          - coco
-          - cvat
-          - pascal_voc
-          - yolo
-          default: darwin_json_2
-        include_authorship:
-          type: boolean
-        include_export_token:
-          type: boolean
-        filters:
-          $ref: '#/components/schemas/ItemFilters'
     ItemFilters:
       type: object
       properties:
@@ -157,6 +134,29 @@ components:
           format: date-time
         version:
           type: string
+    CreateExportRequest:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+        format:
+          type: string
+          enum:
+          - json
+          - darwin_json_2
+          - coco
+          - cvat
+          - pascal_voc
+          - yolo
+          default: darwin_json_2
+        include_authorship:
+          type: boolean
+        include_export_token:
+          type: boolean
+        filters:
+          $ref: '#/components/schemas/ItemFilters'
   parameters:
     DatasetSlug:
       name: dataset_slug

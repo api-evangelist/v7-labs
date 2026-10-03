@@ -95,21 +95,13 @@ paths:
           description: Stage updated.
 components:
   schemas:
-    SetStageRequest:
+    Error:
       type: object
-      required:
-      - filters
-      - stage_id
-      - workflow_id
       properties:
-        filters:
-          $ref: '#/components/schemas/ItemFilters'
-        stage_id:
+        errors:
+          type: object
+        message:
           type: string
-          format: uuid
-        workflow_id:
-          type: string
-          format: uuid
     ItemFilters:
       type: object
       properties:
@@ -126,6 +118,21 @@ components:
           type: array
           items:
             type: string
+    SetStageRequest:
+      type: object
+      required:
+      - filters
+      - stage_id
+      - workflow_id
+      properties:
+        filters:
+          $ref: '#/components/schemas/ItemFilters'
+        stage_id:
+          type: string
+          format: uuid
+        workflow_id:
+          type: string
+          format: uuid
     Workflow:
       type: object
       properties:
@@ -167,13 +174,6 @@ components:
           type: array
           items:
             type: object
-    Error:
-      type: object
-      properties:
-        errors:
-          type: object
-        message:
-          type: string
   responses:
     NotFound:
       description: The requested resource was not found.

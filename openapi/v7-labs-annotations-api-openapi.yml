@@ -55,6 +55,22 @@ paths:
         '200':
           description: Annotations imported.
 components:
+  parameters:
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      description: The UUID of the item.
+      schema:
+        type: string
+        format: uuid
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
   schemas:
     ImportAnnotationsRequest:
       type: object
@@ -81,22 +97,6 @@ components:
         data:
           type: object
           description: Geometry/value payload (bounding_box, polygon, keypoint, tag, etc.).
-  parameters:
-    ItemId:
-      name: item_id
-      in: path
-      required: true
-      description: The UUID of the item.
-      schema:
-        type: string
-        format: uuid
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
