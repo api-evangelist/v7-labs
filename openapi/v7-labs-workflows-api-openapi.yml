@@ -94,30 +94,44 @@ paths:
         '200':
           description: Stage updated.
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
   schemas:
-    Error:
+    Stage:
       type: object
       properties:
-        errors:
-          type: object
-        message:
+        id:
           type: string
-    ItemFilters:
-      type: object
-      properties:
-        dataset_ids:
+          format: uuid
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - dataset
+          - annotate
+          - review
+          - complete
+          - model
+          - consensus
+          - discard
+        edges:
           type: array
           items:
-            type: integer
-        item_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-        statuses:
-          type: array
-          items:
-            type: string
+            type: object
     SetStageRequest:
       type: object
       required:
@@ -152,43 +166,29 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Stage'
-    Stage:
+    Error:
       type: object
       properties:
-        id:
+        errors:
+          type: object
+        message:
           type: string
-          format: uuid
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-          - dataset
-          - annotate
-          - review
-          - complete
-          - model
-          - consensus
-          - discard
-        edges:
+    ItemFilters:
+      type: object
+      properties:
+        dataset_ids:
           type: array
           items:
-            type: object
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
+            type: integer
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        statuses:
+          type: array
+          items:
+            type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

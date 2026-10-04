@@ -95,45 +95,22 @@ paths:
         '204':
           description: Export removed.
 components:
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+    DatasetSlug:
+      name: dataset_slug
+      in: path
+      required: true
+      description: The slug of the dataset.
+      schema:
+        type: string
   schemas:
-    ItemFilters:
-      type: object
-      properties:
-        dataset_ids:
-          type: array
-          items:
-            type: integer
-        item_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-        statuses:
-          type: array
-          items:
-            type: string
-    Export:
-      type: object
-      properties:
-        name:
-          type: string
-        status:
-          type: string
-          enum:
-          - pending
-          - running
-          - complete
-          - failed
-        format:
-          type: string
-        download_url:
-          type: string
-          format: uri
-        inserted_at:
-          type: string
-          format: date-time
-        version:
-          type: string
     CreateExportRequest:
       type: object
       required:
@@ -157,21 +134,44 @@ components:
           type: boolean
         filters:
           $ref: '#/components/schemas/ItemFilters'
-  parameters:
-    DatasetSlug:
-      name: dataset_slug
-      in: path
-      required: true
-      description: The slug of the dataset.
-      schema:
-        type: string
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
+    Export:
+      type: object
+      properties:
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - pending
+          - running
+          - complete
+          - failed
+        format:
+          type: string
+        download_url:
+          type: string
+          format: uri
+        inserted_at:
+          type: string
+          format: date-time
+        version:
+          type: string
+    ItemFilters:
+      type: object
+      properties:
+        dataset_ids:
+          type: array
+          items:
+            type: integer
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        statuses:
+          type: array
+          items:
+            type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

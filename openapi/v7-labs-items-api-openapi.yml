@@ -229,21 +229,62 @@ paths:
         '200':
           description: Items restored.
 components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      description: The UUID of the item.
+      schema:
+        type: string
+        format: uuid
   schemas:
-    Error:
-      type: object
-      properties:
-        errors:
-          type: object
-        message:
-          type: string
-    ItemFilterRequest:
+    RegisterExistingRequest:
       type: object
       required:
-      - filters
+      - items
+      - dataset_slug
+      - storage_name
       properties:
-        filters:
-          $ref: '#/components/schemas/ItemFilters'
+        dataset_slug:
+          type: string
+        storage_name:
+          type: string
+          description: Name of the configured external storage.
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              path:
+                type: string
+              storage_key:
+                type: string
+    ItemList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        page:
+          $ref: '#/components/schemas/Page'
     RegisterUploadRequest:
       type: object
       required:
@@ -270,6 +311,30 @@ components:
                       type: string
                     file_name:
                       type: string
+    RegisterUploadResponse:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+              slots:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    upload_id:
+                      type: string
+        blocked_items:
+          type: array
+          items:
+            type: object
     Page:
       type: object
       properties:
@@ -278,6 +343,13 @@ components:
         next_id:
           type: string
         previous_id:
+          type: string
+    Error:
+      type: object
+      properties:
+        errors:
+          type: object
+        message:
           type: string
     Item:
       type: object
@@ -305,29 +377,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Slot'
-    RegisterExistingRequest:
-      type: object
-      required:
-      - items
-      - dataset_slug
-      - storage_name
-      properties:
-        dataset_slug:
-          type: string
-        storage_name:
-          type: string
-          description: Name of the configured external storage.
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              path:
-                type: string
-              storage_key:
-                type: string
     Slot:
       type: object
       properties:
@@ -342,15 +391,6 @@ components:
           - video
           - pdf
           - dicom
-    ItemList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
-        page:
-          $ref: '#/components/schemas/Page'
     ItemFilters:
       type: object
       properties:
@@ -367,53 +407,13 @@ components:
           type: array
           items:
             type: string
-    RegisterUploadResponse:
+    ItemFilterRequest:
       type: object
+      required:
+      - filters
       properties:
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-              name:
-                type: string
-              slots:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    upload_id:
-                      type: string
-        blocked_items:
-          type: array
-          items:
-            type: object
-  parameters:
-    ItemId:
-      name: item_id
-      in: path
-      required: true
-      description: The UUID of the item.
-      schema:
-        type: string
-        format: uuid
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+        filters:
+          $ref: '#/components/schemas/ItemFilters'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
