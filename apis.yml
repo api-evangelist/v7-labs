@@ -181,6 +181,8 @@ apis:
   - type: Documentation
     url: https://docs.v7labs.com/docs/import-annotations-made-outside-of-v7
 common:
+- type: Pricing
+  url: https://www.v7labs.com/pricing
 - type: AgenticAccess
   url: agentic-access/v7-labs-agentic-access.yml
 - type: TrustCenter
