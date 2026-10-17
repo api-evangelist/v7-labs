@@ -134,6 +134,22 @@ components:
           type: boolean
         filters:
           $ref: '#/components/schemas/ItemFilters'
+    ItemFilters:
+      type: object
+      properties:
+        dataset_ids:
+          type: array
+          items:
+            type: integer
+        item_ids:
+          type: array
+          items:
+            type: string
+            format: uuid
+        statuses:
+          type: array
+          items:
+            type: string
     Export:
       type: object
       properties:
@@ -156,22 +172,6 @@ components:
           format: date-time
         version:
           type: string
-    ItemFilters:
-      type: object
-      properties:
-        dataset_ids:
-          type: array
-          items:
-            type: integer
-        item_ids:
-          type: array
-          items:
-            type: string
-            format: uuid
-        statuses:
-          type: array
-          items:
-            type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

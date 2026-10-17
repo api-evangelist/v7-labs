@@ -229,88 +229,14 @@ paths:
         '200':
           description: Items restored.
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
-    ItemId:
-      name: item_id
-      in: path
-      required: true
-      description: The UUID of the item.
-      schema:
-        type: string
-        format: uuid
   schemas:
-    RegisterExistingRequest:
+    ItemFilterRequest:
       type: object
       required:
-      - items
-      - dataset_slug
-      - storage_name
+      - filters
       properties:
-        dataset_slug:
-          type: string
-        storage_name:
-          type: string
-          description: Name of the configured external storage.
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              path:
-                type: string
-              storage_key:
-                type: string
-    ItemList:
-      type: object
-      properties:
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Item'
-        page:
-          $ref: '#/components/schemas/Page'
-    RegisterUploadRequest:
-      type: object
-      required:
-      - items
-      - dataset_slug
-      properties:
-        dataset_slug:
-          type: string
-        items:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              path:
-                type: string
-              slots:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    slot_name:
-                      type: string
-                    file_name:
-                      type: string
+        filters:
+          $ref: '#/components/schemas/ItemFilters'
     RegisterUploadResponse:
       type: object
       properties:
@@ -344,6 +270,29 @@ components:
           type: string
         previous_id:
           type: string
+    RegisterExistingRequest:
+      type: object
+      required:
+      - items
+      - dataset_slug
+      - storage_name
+      properties:
+        dataset_slug:
+          type: string
+        storage_name:
+          type: string
+          description: Name of the configured external storage.
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              path:
+                type: string
+              storage_key:
+                type: string
     Error:
       type: object
       properties:
@@ -351,6 +300,29 @@ components:
           type: object
         message:
           type: string
+    ItemList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Item'
+        page:
+          $ref: '#/components/schemas/Page'
+    Slot:
+      type: object
+      properties:
+        slot_name:
+          type: string
+        file_name:
+          type: string
+        type:
+          type: string
+          enum:
+          - image
+          - video
+          - pdf
+          - dicom
     Item:
       type: object
       properties:
@@ -377,20 +349,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Slot'
-    Slot:
-      type: object
-      properties:
-        slot_name:
-          type: string
-        file_name:
-          type: string
-        type:
-          type: string
-          enum:
-          - image
-          - video
-          - pdf
-          - dicom
     ItemFilters:
       type: object
       properties:
@@ -407,13 +365,55 @@ components:
           type: array
           items:
             type: string
-    ItemFilterRequest:
+    RegisterUploadRequest:
       type: object
       required:
-      - filters
+      - items
+      - dataset_slug
       properties:
-        filters:
-          $ref: '#/components/schemas/ItemFilters'
+        dataset_slug:
+          type: string
+        items:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              path:
+                type: string
+              slots:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    slot_name:
+                      type: string
+                    file_name:
+                      type: string
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      description: The UUID of the item.
+      schema:
+        type: string
+        format: uuid
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

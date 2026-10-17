@@ -68,13 +68,14 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    DatasetId:
+      name: id
+      in: path
+      required: true
+      description: The numeric dataset ID.
+      schema:
+        type: integer
   schemas:
     CreateDatasetRequest:
       type: object
@@ -106,14 +107,13 @@ components:
         progress:
           type: number
           format: float
-  parameters:
-    DatasetId:
-      name: id
-      in: path
-      required: true
-      description: The numeric dataset ID.
-      schema:
-        type: integer
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

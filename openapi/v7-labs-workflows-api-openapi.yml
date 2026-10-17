@@ -94,22 +94,26 @@ paths:
         '200':
           description: Stage updated.
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-  parameters:
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
   schemas:
+    Workflow:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        dataset:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        stages:
+          type: array
+          items:
+            $ref: '#/components/schemas/Stage'
     Stage:
       type: object
       properties:
@@ -147,25 +151,6 @@ components:
         workflow_id:
           type: string
           format: uuid
-    Workflow:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        name:
-          type: string
-        dataset:
-          type: object
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        stages:
-          type: array
-          items:
-            $ref: '#/components/schemas/Stage'
     Error:
       type: object
       properties:
@@ -189,6 +174,21 @@ components:
           type: array
           items:
             type: string
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

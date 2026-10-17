@@ -55,22 +55,6 @@ paths:
         '200':
           description: Annotations imported.
 components:
-  parameters:
-    TeamSlug:
-      name: team_slug
-      in: path
-      required: true
-      description: The slug of the team that owns the resource.
-      schema:
-        type: string
-    ItemId:
-      name: item_id
-      in: path
-      required: true
-      description: The UUID of the item.
-      schema:
-        type: string
-        format: uuid
   schemas:
     Annotation:
       type: object
@@ -97,6 +81,22 @@ components:
         overwrite:
           type: boolean
           default: false
+  parameters:
+    TeamSlug:
+      name: team_slug
+      in: path
+      required: true
+      description: The slug of the team that owns the resource.
+      schema:
+        type: string
+    ItemId:
+      name: item_id
+      in: path
+      required: true
+      description: The UUID of the item.
+      schema:
+        type: string
+        format: uuid
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
