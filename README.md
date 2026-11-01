@@ -1,4 +1,4 @@
-# V7 (v7-labs)
+# V7
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,158 +66,129 @@
 
 V7 is an AI training-data and document-automation company. V7 Darwin is a training-data platform for labeling images, video, and documents and orchestrating human-in-the-loop annotation workflows; V7 Go automates document-intensive knowledge work with agentic AI. The Darwin REST API at https://darwin.v7labs.com/api manages datasets, items, annotations, classes, workflow stages, and exports using ApiKey authentication.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/v7-labs/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/v7-labs/refs/heads/main/apis.yml)
+**Areas:** Artificial Intelligence · Training Data · Data Labeling · Annotation · Document AI · Computer Vision
 
-## Tags
+## V7 on APIs.io
 
-- AI
-- Training Data
-- Data Labeling
-- Annotation
-- Document AI
-- Computer Vision
+Everything profiled for V7 is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/v7-labs/](https://apis.io/providers/v7-labs/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (6)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [V7 Annotations API](https://apis.io/apis/v7-labs/v7-labs-annotations-api/) — Read and import item annotations.
+- [V7 Classes API](https://apis.io/apis/v7-labs/v7-labs-classes-api/) — Manage annotation classes (labeling taxonomy).
+- [V7 Datasets API](https://apis.io/apis/v7-labs/v7-labs-datasets-api/) — Create and manage datasets.
+- [V7 Exports API](https://apis.io/apis/v7-labs/v7-labs-exports-api/) — Request and manage dataset exports (releases).
+- [V7 Items API](https://apis.io/apis/v7-labs/v7-labs-items-api/) — Register, upload, list, and manage dataset items.
+- [V7 Workflows API](https://apis.io/apis/v7-labs/v7-labs-workflows-api/) — Manage multi-stage annotation workflows and stages.
 
-## APIs
+### Published properties
 
-### V7 Darwin Datasets API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Create and manage Darwin datasets that hold the images, video, and documents being annotated, including external-storage configuration and dataset releases.
+#### Agentic access (1)
 
-- **Human URL:** [https://docs.v7labs.com/reference/introduction](https://docs.v7labs.com/reference/introduction)
-- **Base URL:** `https://darwin.v7labs.com/api`
+Which operations an agent can call, which act, and which need a human in the loop.
 
-#### Tags
+- [V7 Labs Agentic Access](https://apis.io/agentic-access/v7-labs/v7-labs-agentic-access/)
 
-- Datasets
-- Training Data
-- Computer Vision
+#### Collections (7)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://docs.v7labs.com/docs/getting-started-1)
-- [API Reference](https://docs.v7labs.com/reference/introduction)
-- [OpenAPI](openapi/v7-labs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/v7-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/v7-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [V7 Darwin API](https://apis.io/collections/v7-labs/open-v7-labs/)
+- [V7 Darwin Annotations API](https://apis.io/collections/v7-labs/open-v7-labs-annotations-api/)
+- [V7 Darwin Annotations Classes API](https://apis.io/collections/v7-labs/open-v7-labs-classes-api/)
+- [V7 Darwin Annotations Datasets API](https://apis.io/collections/v7-labs/open-v7-labs-datasets-api/)
+- [V7 Darwin Annotations Exports API](https://apis.io/collections/v7-labs/open-v7-labs-exports-api/)
+- [V7 Darwin Annotations Items API](https://apis.io/collections/v7-labs/open-v7-labs-items-api/)
+- [V7 Darwin Annotations Workflows API](https://apis.io/collections/v7-labs/open-v7-labs-workflows-api/)
 
-### V7 Darwin Items & Upload API
+#### Security (4)
 
-Register, sign, and confirm uploads of locally or externally stored files as dataset items, list and filter items, and archive, restore, move, or delete them across datasets.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.v7labs.com/reference/introduction](https://docs.v7labs.com/reference/introduction)
-- **Base URL:** `https://darwin.v7labs.com/api`
+- [V7 Labs Authentication](https://apis.io/security/v7-labs/v7-labs-authentication/)
+- [V7 Labs Domain Security](https://apis.io/security/v7-labs/v7-labs-domain-security/)
+- [V7 Labs Trust Center](https://apis.io/security/v7-labs/v7-labs-trust-center/)
+- [V7 Labs Vulnerability Disclosure](https://apis.io/security/v7-labs/v7-labs-vulnerability-disclosure/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Items
-- Upload
-- Registration
+Published plans, tiers and prices.
 
-#### Properties
+- [V7 Labs Plans Pricing](https://apis.io/plans/v7-labs/v7-labs-plans-pricing/)
 
-- [Documentation](https://docs.v7labs.com/docs/getting-started-1)
-- [API Reference](https://docs.v7labs.com/reference/introduction)
-- [OpenAPI](openapi/v7-labs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/v7-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/v7-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### V7 Darwin Annotations API
+Published request limits.
 
-Read the annotations attached to an item and import annotations created outside of V7 in the Darwin JSON v2.0 format.
+- [V7 Labs Rate Limits](https://apis.io/rate-limits/v7-labs/v7-labs-rate-limits/)
 
-- **Human URL:** [https://docs.v7labs.com/reference/introduction](https://docs.v7labs.com/reference/introduction)
-- **Base URL:** `https://darwin.v7labs.com/api`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Annotations
-- Labels
-- Import
+- [V7 Labs Finops](https://apis.io/finops/v7-labs/v7-labs-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.v7labs.com/docs/import-annotations-made-outside-of-v7)
-- [API Reference](https://docs.v7labs.com/reference/introduction)
-- [OpenAPI](openapi/v7-labs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/v7-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/v7-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-### V7 Darwin Workflows & Stages API
-
-Create, list, and manage multi-stage annotation workflows, link datasets, set the workflow stage of items, and assign items to annotators for human-in-the-loop review.
-
-- **Human URL:** [https://docs.v7labs.com/reference/introduction](https://docs.v7labs.com/reference/introduction)
-- **Base URL:** `https://darwin.v7labs.com/api`
-
-#### Tags
-
-- Workflows
-- Stages
-- Human in the Loop
-
-#### Properties
-
-- [API Reference](https://docs.v7labs.com/reference/introduction)
-- [OpenAPI](openapi/v7-labs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/v7-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/v7-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### V7 Darwin Annotation Classes API
-
-List and update the team's annotation classes (bounding box, polygon, keypoint, tag, and other label types) that define the labeling taxonomy used across datasets.
-
-- **Human URL:** [https://docs.v7labs.com/reference/introduction](https://docs.v7labs.com/reference/introduction)
-- **Base URL:** `https://darwin.v7labs.com/api`
-
-#### Tags
-
-- Classes
-- Taxonomy
-- Labels
-
-#### Properties
-
-- [API Reference](https://docs.v7labs.com/reference/introduction)
-- [OpenAPI](openapi/v7-labs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/v7-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/v7-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### V7 Darwin Exports API
-
-Request, list, show, and delete dataset exports (releases) that package the labeled annotations asynchronously for download as training data.
-
-- **Human URL:** [https://docs.v7labs.com/reference/introduction](https://docs.v7labs.com/reference/introduction)
-- **Base URL:** `https://darwin.v7labs.com/api`
-
-#### Tags
-
-- Exports
-- Releases
-- Datasets
-
-#### Properties
-
-- [API Reference](https://docs.v7labs.com/reference/introduction)
-- [OpenAPI](openapi/v7-labs-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/v7-labs.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/v7-labs.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/v7labs)
-- [LinkedIn](https://www.linkedin.com/company/v7labs)
 - [Website](https://www.v7labs.com)
 - [Documentation](https://docs.v7labs.com)
-- [Plans](plans/v7-labs-plans-pricing.yml)
-- [Rate Limits](rate-limits/v7-labs-rate-limits.yml)
-- [Fin Ops](finops/v7-labs-finops.yml)
+- [Pricing](https://www.v7labs.com/pricing)
+- [Blog](https://www.v7labs.com/blog)
+- [GitHub](https://github.com/v7labs)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 33.4** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 45.9 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 39.5 |
+
+**Agent readiness 19.6** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 20.9** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/v7-labs/](https://apis.io/providers/v7-labs/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for V7: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/v7-labs/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
